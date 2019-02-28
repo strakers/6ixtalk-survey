@@ -18,9 +18,9 @@ class CreateWordPhraseRatingsTable extends Migration
             $table->bigInteger('submission_id')->unsigned();
             $table->bigInteger('word_phrase_id')->unsigned();
             $table->tinyInteger('rating')->default(0);
-            $table->string('correction',255)->nullable();
-            $table->string('theme',255)->nullable();
-            $table->string('region',255)->nullable();
+            $table->fullString('correction')->nullable();
+            $table->fullString('theme')->nullable();
+            $table->fullString('region')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('submission_id')->references('id')->on('submissions');

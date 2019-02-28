@@ -15,11 +15,11 @@ class CreateSubmissionsTable extends Migration
     {
         Schema::create('submissions', function (CalorBlueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',255);
-            $table->string('age',255)->nullable();
-            $table->string('gender',255)->nullable();
-            $table->string('location',255)->nullable();
-            $table->string('nationality',255)->nullable();
+            $table->fullString('name');
+            $table->fullString('age')->nullable();
+            $table->fullString('gender')->nullable();
+            $table->fullString('location')->nullable();
+            $table->fullString('nationality')->nullable();
             $table->ipAddress('ip_address');
             $table->timestamps();
             $table->softDeletes();

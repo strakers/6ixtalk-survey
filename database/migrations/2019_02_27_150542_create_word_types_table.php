@@ -15,7 +15,7 @@ class CreateWordTypesTable extends Migration
     {
         Schema::create('word_types', function (CalorBlueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 255);
+            $table->fullString('name');
             $table->timestamps();
             $table->softDeletes();
         });

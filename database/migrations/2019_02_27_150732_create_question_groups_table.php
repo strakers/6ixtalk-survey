@@ -15,7 +15,7 @@ class CreateQuestionGroupsTable extends Migration
     {
         Schema::create('question_groups', function (CalorBlueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',255);
+            $table->fullString('name');
             $table->integer('sort_order')->unsigned();
             $table->timestamps();
             $table->softDeletes();

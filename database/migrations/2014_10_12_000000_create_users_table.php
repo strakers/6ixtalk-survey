@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (CalorBlueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->fullString('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

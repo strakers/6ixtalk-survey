@@ -16,9 +16,9 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (CalorBlueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('question_group_id')->unsigned();
-            $table->string('name',255);
-            $table->string('question',255);
-            $table->string('question_type',255);
+            $table->fullString('name');
+            $table->fullString('question');
+            $table->fullString('question_type');
             $table->json('options')->nullable();
             $table->integer('sort_order')->unsigned();
             $table->timestamps();
