@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class WordPhraseMeaning extends Model
 {
+    use SoftDeletes;
     //
     protected $fillable = [
         'submission_id',
