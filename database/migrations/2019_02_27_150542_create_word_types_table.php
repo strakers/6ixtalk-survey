@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Calormyn\Database\Schema\CalorBlueprint;
 
 class CreateWordTypesTable extends Migration
 {
@@ -13,10 +13,11 @@ class CreateWordTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('word_types', function (Blueprint $table) {
+        Schema::create('word_types', function (CalorBlueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 255);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
