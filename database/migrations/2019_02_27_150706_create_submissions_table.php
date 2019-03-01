@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Calormyn\Database\Schema\CalorBlueprint;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateSubmissionsTable extends Migration
@@ -13,7 +13,7 @@ class CreateSubmissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('submissions', function (CalorBlueprint $table) {
+        Schema::create('submissions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->fullString('name');
             $table->fullString('age')->nullable();
@@ -21,7 +21,7 @@ class CreateSubmissionsTable extends Migration
             $table->fullString('location')->nullable();
             $table->fullString('nationality')->nullable();
             $table->ipAddress('ip_address');
-            $table->timestamps();
+            $table->managedTimestamps();
             $table->softDeletes();
         });
     }
