@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Question;
 use App\QuestionGroup;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Request as Frequest;
+use Illuminate\Support\Facades\Input;
 
 class QuestionController extends Controller
 {
@@ -17,9 +17,15 @@ class QuestionController extends Controller
     public function index()
     {
         //
-        dd(Frequest::segments());
-
-
+        if(Input::get('groups')){
+            $groups = QuestionGroup::with('questions')->orderBy('sort_order')->get();
+            dd($groups);
+            return response()->json($groups);
+        }
+        else {
+            $questions = Question::all();
+            return response()->json($questions);
+        }
     }
 
     /**
