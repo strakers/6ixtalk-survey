@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use App\QuestionGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as Frequest;
 
 class QuestionController extends Controller
 {
@@ -15,6 +17,9 @@ class QuestionController extends Controller
     public function index()
     {
         //
+        dd(Frequest::segments());
+
+
     }
 
     /**
