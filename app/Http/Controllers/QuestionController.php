@@ -23,7 +23,7 @@ class QuestionController extends Controller
             return response()->json($groups);
         }
         else {
-            $questions = Question::all();
+            $questions = Question::with('group')->get();
             return response()->json($questions);
         }
     }
