@@ -17,7 +17,8 @@ class CreateWordPhraseMeaningsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('submission_id')->unsigned();
             $table->bigInteger('word_phrase_id')->unsigned();
-            $table->fullString('name')->nullable();
+            $table->fullString('similar');
+            $table->fullString('usage')->nullable();
             $table->fullString('meaning')->nullable();
             $table->fullString('region')->nullable();
             $table->managedTimestamps();
