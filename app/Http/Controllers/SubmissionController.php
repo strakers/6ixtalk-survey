@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Submission;
+use App\WordPhrase;
+use App\WordPhraseMeaning;
+use App\WordPhraseRating;
 use Illuminate\Http\Request;
 use App\Http\Requests\SubmisstionRequest;
 
@@ -37,10 +40,82 @@ class SubmissionController extends Controller
      */
     public function store(SubmisstionRequest $request)
     {
+        $savelog = [
+            'submission' => [
+                'success' => 0,
+                'error' => 0,
+            ],
+            'ratings' => [
+                'success' => 0,
+                'error' => 0,
+            ],
+            'meanings' => [
+                'success' => 0,
+                'error' => 0,
+            ]
+        ];
         //
-        $ip = request()->ip();
+        $submission = new Submission();
+        $submission->name = $request->get('personal.name');
+        $submission->generated_name_id = $request->get('personal.generated_name_id');
+        $submission->age = $request->get('personal.age');
+        $submission->gender = $request->get('personal.gender');
+        $submission->used_binary_gender = $request->get('personal.used_binary_gender');
+        $submission->location = $request->get('personal.location');
+        $submission->nationality = $request->get('personal.nationality');
+        $submission->email_address = $request->get('personal.email');
+        $submission->ip_address = $request->ip();
 
+        if( $submission->save() ){
+            $savelog['submission']['success']++;
 
+            foreach($request->corrections as $correction){
+                $rating = new WordPhraseRating();
+                $rating->submission_id = $submission->id;
+                $rating->word_phrase_id = $correction['word_id'];
+                $rating->rating = $correction['rating'];
+                $rating->theme = $correction['theme'];
+                $rating->meaning = $correction['meaning'];
+                $rating->region = $correction['region'];
+                if( $rating->save() ){
+                    $savelog['ratings']['success']++;
+                }
+                else{
+                    $savelog['ratings']['error']++;
+                }
+            }
+
+            foreach($request->experience as $addition){
+                $word = WordPhrase::firstOrCreate(
+                    [
+                        'name' => $addition['word']
+                    ],
+                    [
+                        'meaning' => $addition['meaning']
+                    ]
+                );
+
+                $meaning = new WordPhraseMeaning();
+                $meaning->submission_id = $submission->id;
+                $meaning->word_phrase_id = $word->id;
+                $meaning->similar = $addition['similar'];
+                $meaning->usage = $addition['usage'];
+                $meaning->meaning = $addition['meaning'];
+                $meaning->region = $addition['region'];
+
+                if( $meaning->save() ){
+                    $savelog['meanings']['success']++;
+                }
+                else{
+                    $savelog['meanings']['error']++;
+                }
+            }
+        }
+        else {
+            $savelog['submission']['error']++;
+        }
+
+        return response()->json($savelog);
 
     }
 
