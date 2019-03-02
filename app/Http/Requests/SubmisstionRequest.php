@@ -27,21 +27,25 @@ class SubmisstionRequest extends FormRequest
             //
             'personal' => 'array',
                 'personal.name' => 'required|string|max:255',
-                'personal.name_generated_id' => 'nullable|integer',
+                'personal.generated_name_id' => 'nullable|integer',
                 'personal.age' => 'present|alpha_num|max:255',
                 'personal.gender' => 'present|alpha|max:15',
-                'personal.gender_used_binary' => 'nullable|boolean',
+                'personal.used_binary_gender' => 'nullable|boolean',
                 'personal.location' => 'present|string|max:255',
                 'personal.nationality' => 'present|string|max:255',
                 'personal.email' => 'present|email',
             'corrections' => 'array',
+                'corrections.*.word_id' => 'required|integer|exists:word_phrase,id',
                 'corrections.*.rating' => 'required|integer',
                 'corrections.*.theme' => 'required|string|max:255',
                 'corrections.*.meaning' => 'present|string|max:255',
+                'corrections.*.region' => 'present|string|max:255',
             'experience' => 'array',
                 'experience.*.word' => 'required|string|max:255',
                 'experience.*.similar' => 'required|string|max:255',
+                'experience.*.meaning' => 'present|string|max:255',
                 'experience.*.usage' => 'present|string|max:255',
+                'experience.*.region' => 'present|string|max:255',
         ];
     }
 }
