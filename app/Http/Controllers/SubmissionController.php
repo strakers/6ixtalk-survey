@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Submission;
 use Illuminate\Http\Request;
+use App\Http\Requests\SubmisstionRequest;
 
 class SubmissionController extends Controller
 {
@@ -25,6 +26,7 @@ class SubmissionController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -33,9 +35,13 @@ class SubmissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubmisstionRequest $request)
     {
         //
+        $ip = request()->ip();
+
+
+
     }
 
     /**
