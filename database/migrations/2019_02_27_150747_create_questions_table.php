@@ -19,7 +19,12 @@ class CreateQuestionsTable extends Migration
             $table->fullString('name');
             $table->fullString('question');
             $table->fullString('question_type');
-            $table->json('options')->nullable();
+            if( PHP_VERSION >= '5.7.0' ){
+                $table->json('options')->nullable();
+            }
+            else {
+                $table->text('options')->nullable();
+            }
             $table->integer('sort_order')->unsigned();
             $table->managedTimestamps();
             $table->softDeletes();
