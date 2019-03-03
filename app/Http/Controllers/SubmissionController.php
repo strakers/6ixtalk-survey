@@ -7,7 +7,7 @@ use App\WordPhrase;
 use App\WordPhraseMeaning;
 use App\WordPhraseRating;
 use Illuminate\Http\Request;
-use App\Http\Requests\SubmisstionRequest;
+use App\Http\Requests\SubmissionRequest;
 
 class SubmissionController extends Controller
 {
@@ -38,7 +38,7 @@ class SubmissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SubmisstionRequest $request)
+    public function store(SubmissionRequest $request)
     {
         $savelog = [
             'submission' => [
