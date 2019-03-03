@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Question;
-use App\QuestionGroup;
+use App\GeneratedName;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 
-class QuestionController extends Controller
+class GeneratedNameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +15,6 @@ class QuestionController extends Controller
     public function index()
     {
         //
-        if(Input::get('groups')){
-            $groups = QuestionGroup::with('questions')->orderBy('sort_order')->get();
-            dd($groups);
-            return response()->json($groups);
-        }
-        else {
-            $questions = Question::with('group')->get();
-            return response()->json($questions);
-        }
     }
 
     /**
@@ -52,10 +41,10 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Question  $question
+     * @param  \App\GeneratedName  $generatedName
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show(GeneratedName $generatedName)
     {
         //
     }
@@ -63,10 +52,10 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Question  $question
+     * @param  \App\GeneratedName  $generatedName
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(GeneratedName $generatedName)
     {
         //
     }
@@ -75,10 +64,10 @@ class QuestionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
+     * @param  \App\GeneratedName  $generatedName
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, GeneratedName $generatedName)
     {
         //
     }
@@ -86,10 +75,10 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Question  $question
+     * @param  \App\GeneratedName  $generatedName
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy(GeneratedName $generatedName)
     {
         //
     }

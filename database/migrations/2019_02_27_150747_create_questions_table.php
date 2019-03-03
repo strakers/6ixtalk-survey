@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Calormyn\Database\Schema\CalorBlueprint;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateQuestionsTable extends Migration
@@ -13,7 +13,7 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (CalorBlueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('question_group_id')->unsigned();
             $table->fullString('name');
@@ -21,7 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->fullString('question_type');
             $table->json('options')->nullable();
             $table->integer('sort_order')->unsigned();
-            $table->timestamps();
+            $table->managedTimestamps();
             $table->softDeletes();
             $table->foreign('question_group_id')->references('id')->on('question_groups');
         });

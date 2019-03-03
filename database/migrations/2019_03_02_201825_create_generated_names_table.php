@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionGroupsTable extends Migration
+class CreateGeneratedNamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateQuestionGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('question_groups', function (Blueprint $table) {
+        Schema::create('generated_names', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->fullString('name');
-            $table->integer('sort_order')->unsigned();
-            $table->managedTimestamps();
-            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ class CreateQuestionGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question_groups');
+        Schema::dropIfExists('generated_names');
     }
 }

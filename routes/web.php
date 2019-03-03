@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('questions','QuestionController');
+Route::resource('submissions','SubmissionController');
