@@ -12,9 +12,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        $this->call(WordTypeSeeder::class);
-        $this->call(GeneratedNameSeeder::class);
-        $this->call(QuestionGroupSeeder::class);
-        $this->call(WordPhraseSeeder::class);
+        $this->call([
+            WordTypeSeeder::class,
+            GeneratedNameSeeder::class,
+            QuestionGroupSeeder::class,
+            WordPhraseSeeder::class,
+        ]);
     }
 }
