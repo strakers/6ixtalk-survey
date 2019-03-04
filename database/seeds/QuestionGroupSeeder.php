@@ -16,7 +16,7 @@ class QuestionGroupSeeder extends Seeder
         foreach($this->storage_values as $storage_set){
             $fields = ['name','sort_order'];
             $package = array_combine($fields, $storage_set);
-            DB::table('question_group')->insert( $package );
+            DB::table('question_groups')->insert( $package );
         }
     }
 
