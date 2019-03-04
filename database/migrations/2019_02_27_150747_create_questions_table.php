@@ -15,7 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
 
-            $result = DB::select( DB::row('SELECT version() as version'));
+            $result = DB::select( DB::raw('SELECT version() as version'));
             $mysql_version = $result[0]->version;
 
             $table->bigIncrements('id');
