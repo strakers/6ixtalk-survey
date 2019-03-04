@@ -15,7 +15,10 @@ class CreateGeneratedNamesTable extends Migration
     {
         Schema::create('generated_names', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->fullString('name');
+            $table->bigInteger('num_used');
+            $table->managedTimestamps();
+            $table->softDeletes();
         });
     }
 
