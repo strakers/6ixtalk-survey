@@ -14,12 +14,16 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
+
+            $result = DB::select( DB::row('SELECT version() as version'));
+            $mysql_version = $result[0]->version;
+
             $table->bigIncrements('id');
             $table->bigInteger('question_group_id')->unsigned();
             $table->fullString('name');
             $table->fullString('question');
             $table->fullString('question_type');
-            if( PHP_VERSION >= '5.7.0' ){
+            if( $mysql_version >= '5.7.0' ){
                 $table->json('options')->nullable();
             }
             else {
